@@ -1,0 +1,5 @@
+{
+  "category.kthreadd": "KTHREADD",
+  "key.kthreadd.gui": "Open ClickGUI",
+  "key.kthreadd.hud": "Open HUD editor"
+}

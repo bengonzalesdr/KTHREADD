@@ -1,0 +1,1 @@
+{"schemaVersion":1,"id":"kthreaddqa","version":"1.0.0","name":"Development-only runtime QA","environment":"client","entrypoints":{"client":["dev.kthreadd.qa.RuntimeSmoke"]},"depends":{"kthreadd":"*"}}

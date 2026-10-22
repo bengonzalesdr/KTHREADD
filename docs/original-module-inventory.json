@@ -1,0 +1,835 @@
+[
+  {
+    "name": "AntiChainPop",
+    "category": "COMBAT",
+    "class": "modules/combat/AntiChainPop.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "AutoArmor",
+    "category": "COMBAT",
+    "class": "modules/combat/AutoArmor.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "AutoFeetObby",
+    "category": "COMBAT",
+    "class": "modules/combat/AutoFeetObby.java",
+    "settings": [
+      "Sneak",
+      "Teleport",
+      "EndChest",
+      "JumpDisable",
+      "AutoToggle"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "AutoLog",
+    "category": "COMBAT",
+    "class": "modules/combat/AutoLog.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "AutoOffhandCrystal",
+    "category": "COMBAT",
+    "class": "modules/combat/AutoOffhandCrystal.java",
+    "settings": [
+      "Health",
+      "ToggleTotem",
+      "CrystalCheck",
+      "HoleCheck",
+      "HoleHealth"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "AutoOffhandGap",
+    "category": "COMBAT",
+    "class": "modules/combat/AutoOffhandGap.java",
+    "settings": [
+      "Health",
+      "ToggleTotem",
+      "CrystalCheck"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "AutoTotem",
+    "category": "COMBAT",
+    "class": "modules/combat/AutoTotem.java",
+    "settings": [
+      "Health"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "AutoTrap",
+    "category": "COMBAT",
+    "class": "modules/combat/AutoTrap.java",
+    "settings": [
+      "EndChest",
+      "Delay",
+      "Range",
+      "BlocksPerTick"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "CrystalAura",
+    "category": "COMBAT",
+    "class": "modules/combat/CrystalAura.java",
+    "settings": [
+      "EnemyRange",
+      "PlaceRange",
+      "PlaceDelay",
+      "BreakRange",
+      "AttackSpeed",
+      "MinimumDamage",
+      "Faceplace",
+      "MaxSelfDamage",
+      "MultiPlaceSpeed",
+      "Place",
+      "pSilent",
+      "RayTrace",
+      "AutoSwitch",
+      "AntiStuck",
+      "MultiPlace",
+      "ShowRotations",
+      "Announcer",
+      "AntiSuicide",
+      "PauseWhileEating",
+      "Color"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "FastBow",
+    "category": "COMBAT",
+    "class": "modules/combat/FastBow.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "FastCrystal",
+    "category": "COMBAT",
+    "class": "modules/combat/FastCrystal.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "KillAura",
+    "category": "COMBAT",
+    "class": "modules/combat/KillAura.java",
+    "settings": [
+      "SortMode",
+      "Mode",
+      "Range",
+      "Criticals",
+      "Invisibles",
+      "Players",
+      "Animals",
+      "Monsters",
+      "Passives"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "NoVelocity",
+    "category": "COMBAT",
+    "class": "modules/combat/NoVelocity.java",
+    "settings": [
+      "AAC"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "SelfTrap",
+    "category": "COMBAT",
+    "class": "modules/combat/SelfTrap.java",
+    "settings": [
+      "Range",
+      "BlocksPerTick",
+      "Range",
+      "Mode",
+      "Rotate",
+      "Smart",
+      "DisableOnPlace",
+      "DisableCAOnPlace"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "ElytraFly",
+    "category": "MOVEMENT",
+    "class": "modules/movement/ElytraFly.java",
+    "settings": [
+      "HorizontalSpeed",
+      "VerticalSpeed"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "EntitySpeed",
+    "category": "MOVEMENT",
+    "class": "modules/movement/EntitySpeed.java",
+    "settings": [
+      "Flight",
+      "StepHeight",
+      "Speed"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "FastIce",
+    "category": "MOVEMENT",
+    "class": "modules/movement/FastIce.java",
+    "settings": [
+      "Speed"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "Flight",
+    "category": "MOVEMENT",
+    "class": "modules/movement/Flight.java",
+    "settings": [
+      "mode",
+      "Speed"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "HoleTP",
+    "category": "MOVEMENT",
+    "class": "modules/movement/HoleTP.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Jesus",
+    "category": "MOVEMENT",
+    "class": "modules/movement/Jesus.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Noclip",
+    "category": "MOVEMENT",
+    "class": "modules/movement/Noclip.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "NoPush",
+    "category": "MOVEMENT",
+    "class": "modules/movement/NoPush.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "NoRotate",
+    "category": "OTHER",
+    "class": "modules/movement/NoRotate.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "NoSlowDown",
+    "category": "MOVEMENT",
+    "class": "modules/movement/NoSlowDown.java",
+    "settings": [
+      "NCP"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "Phase",
+    "category": "MOVEMENT",
+    "class": "modules/movement/Phase.java",
+    "settings": [
+      "Mode",
+      "Floor"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Safewalk",
+    "category": "MOVEMENT",
+    "class": "modules/movement/SafeWalk.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "Scaffold",
+    "category": "MOVEMENT",
+    "class": "modules/movement/Scaffold.java",
+    "settings": [
+      "Expand",
+      "ESPMode",
+      "Switch",
+      "Tower",
+      "Center",
+      "KeepY",
+      "Sprint",
+      "ESP",
+      "KeepRotations",
+      "Replenish",
+      "Down",
+      "Swing"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Speed",
+    "category": "MOVEMENT",
+    "class": "modules/movement/Speed.java",
+    "settings": [
+      "mode",
+      "Speed"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "Sprint",
+    "category": "MOVEMENT",
+    "class": "modules/movement/Sprint.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "Step",
+    "category": "MOVEMENT",
+    "class": "modules/movement/Step.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "Strafe",
+    "category": "MOVEMENT",
+    "class": "modules/movement/Strafe.java",
+    "settings": [
+      "Ground"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "Timer",
+    "category": "MOVEMENT",
+    "class": "modules/movement/Timer.java",
+    "settings": [
+      "Speed"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "AntiTabComplete",
+    "category": "OTHER",
+    "class": "modules/other/AntiTabComplete.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "AutoCrystalArmor",
+    "category": "OTHER",
+    "class": "modules/other/AutoCrystalArmor.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "BuildHeight",
+    "category": "OTHER",
+    "class": "modules/other/BuildHeight.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Crasher",
+    "category": "OTHER",
+    "class": "modules/other/Crasher.java",
+    "settings": [],
+    "status": "Excluded",
+    "note": "Packet flooding/server crashing excluded."
+  },
+  {
+    "name": "FakeVanilla",
+    "category": "OTHER",
+    "class": "modules/other/FakeVanilla.java",
+    "settings": [],
+    "status": "Excluded",
+    "note": "Client identity spoofing omitted."
+  },
+  {
+    "name": "FastBreak",
+    "category": "OTHER",
+    "class": "modules/other/FastBreak.java",
+    "settings": [
+      "Mode",
+      "Reset",
+      "DoubleBreak"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Freecam",
+    "category": "OTHER",
+    "class": "modules/other/Freecam.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "GhostHand",
+    "category": "OTHER",
+    "class": "modules/other/GhostHand.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "MCF",
+    "category": "OTHER",
+    "class": "modules/other/MCF.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "NoDismount",
+    "category": "OTHER",
+    "class": "modules/other/NoDismount.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "NoEntityTrace",
+    "category": "OTHER",
+    "class": "modules/other/NoEntityTrace.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "NoHurtcam",
+    "category": "OTHER",
+    "class": "modules/other/NoHurtcam.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "NoLag",
+    "category": "OTHER",
+    "class": "modules/other/NoLag.java",
+    "settings": [
+      "NoSound",
+      "Sign",
+      "Book",
+      "NoParticles"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "Notifications",
+    "category": "OTHER",
+    "class": "modules/other/Notifications.java",
+    "settings": [
+      "Notification"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "PortalGod",
+    "category": "OTHER",
+    "class": "modules/other/PortalGod.java",
+    "settings": [],
+    "status": "Excluded",
+    "note": "Obsolete invulnerability exploit omitted."
+  },
+  {
+    "name": "PortalGui",
+    "category": "OTHER",
+    "class": "modules/other/PortalGui.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Spammer",
+    "category": "OTHER",
+    "class": "modules/other/Spammer.java",
+    "settings": [
+      "Speed"
+    ],
+    "status": "Excluded",
+    "note": "Automatic message spam excluded."
+  },
+  {
+    "name": "Speedmine",
+    "category": "OTHER",
+    "class": "modules/other/Speedmine.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Suffixes",
+    "category": "OTHER",
+    "class": "modules/other/Suffixes.java",
+    "settings": [
+      "Suffix"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Timestamps",
+    "category": "OTHER",
+    "class": "modules/other/Timestamps.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "TotemPopCounter",
+    "category": "OTHER",
+    "class": "modules/other/TotemPopCounter.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "XCarry",
+    "category": "OTHER",
+    "class": "modules/other/XCarry.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "AntiEffects",
+    "category": "PLAYER",
+    "class": "modules/player/AntiEffects.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "AntiFriendHit",
+    "category": "OTHER",
+    "class": "modules/player/AntiFriendHit.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "AntiHunger",
+    "category": "PLAYER",
+    "class": "modules/player/AntiHunger.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "AntiVoid",
+    "category": "PLAYER",
+    "class": "modules/player/AntiVoid.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "AutoMine",
+    "category": "PLAYER",
+    "class": "modules/player/AutoMine.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "AutoTool",
+    "category": "PLAYER",
+    "class": "modules/player/AutoTool.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "Blink",
+    "category": "PLAYER",
+    "class": "modules/player/Blink.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "FastEXP",
+    "category": "PLAYER",
+    "class": "modules/player/FastEXP.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Godmode",
+    "category": "PLAYER",
+    "class": "modules/player/Godmode.java",
+    "settings": [
+      "Remount"
+    ],
+    "status": "Excluded",
+    "note": "Obsolete server exploit omitted."
+  },
+  {
+    "name": "HoleFiller",
+    "category": "PLAYER",
+    "class": "modules/player/HoleFiller.java",
+    "settings": [
+      "Fade",
+      "Radius"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "InvWalk",
+    "category": "PLAYER",
+    "class": "modules/player/InvWalk.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "ItemStacker",
+    "category": "PLAYER",
+    "class": "modules/player/ItemStacker.java",
+    "settings": [
+      "TickDelay",
+      "Threshold"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "NoBreakAnimation",
+    "category": "PLAYER",
+    "class": "modules/player/NoBreakAnimation.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "AntiArmorRender",
+    "category": "RENDER",
+    "class": "modules/render/AntiArmorRender.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "ChunkUpdates",
+    "category": "RENDER",
+    "class": "modules/render/ChunkUpdates.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "ClickGui",
+    "category": "RENDER",
+    "class": "modules/render/ClickGui.java",
+    "settings": [
+      "Color"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "FullBright",
+    "category": "RENDER",
+    "class": "modules/render/FullBright.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "Holes",
+    "category": "RENDER",
+    "class": "modules/render/Holes.java",
+    "settings": [
+      "Mode",
+      "Bottom",
+      "Void",
+      "Weak",
+      "Radius"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "LogoutSpots",
+    "category": "RENDER",
+    "class": "modules/render/LogoutSpots.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "NoBossBar",
+    "category": "RENDER",
+    "class": "modules/render/NoBossBar.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "PlayerList",
+    "category": "RENDER",
+    "class": "modules/render/PlayerList.java",
+    "settings": [
+      "ShowFriends"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "PortalESP",
+    "category": "RENDER",
+    "class": "modules/render/PortalESP.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "ShulkerPreview",
+    "category": "RENDER",
+    "class": "modules/render/ShulkerPreview.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Trajectories",
+    "category": "RENDER",
+    "class": "modules/render/Trajectories.java",
+    "settings": [],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Visuals",
+    "category": "RENDER",
+    "class": "modules/render/Visuals.java",
+    "settings": [
+      "PlayerColor",
+      "Tracers",
+      "BoundingBox",
+      "BoxMode",
+      "Health",
+      "Nametags",
+      "Armor",
+      "Ping",
+      "Outline",
+      "Wallhack",
+      "Skeleton",
+      "Invisibles",
+      "Players",
+      "Animals",
+      "Monsters",
+      "Passives",
+      "Chests",
+      "Furnaces",
+      "Shulkers",
+      "EnchantTable",
+      "BrewingStands",
+      "RedstoneBlocks",
+      "Spawners"
+    ],
+    "status": "Not implemented",
+    "note": "No placeholder registered."
+  },
+  {
+    "name": "Commands",
+    "category": "OTHER",
+    "class": "persistent/Commands.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "Keybinds",
+    "category": "OTHER",
+    "class": "persistent/Keybinds.java",
+    "settings": [],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  },
+  {
+    "name": "Overlay",
+    "category": "RENDER",
+    "class": "persistent/Overlay.java",
+    "settings": [
+      "ColorMode",
+      "Font",
+      "ArrayList",
+      "ShowSuffix",
+      "Armor",
+      "XYZ",
+      "FPS",
+      "TPS",
+      "Totems",
+      "Inventory",
+      "Ping",
+      "Greetings",
+      "Potions",
+      "NotResponding",
+      "Notifications",
+      "TargetHUD",
+      "ClientColor"
+    ],
+    "status": "Implemented equivalent (reduced scope)",
+    "note": "See TESTING.md and README for precise scope; no original binary code copied."
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "dev.kthreadd.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": ["EntityMixin", "PlayerMixin", "ClientPlayerMixin", "LightmapMixin", "WorldMixin", "NetworkMixin", "CameraMixin", "BossBarMixin", "InteractionMixin", "ParticleMixin", "LivingEntityMixin"],
+  "injectors": {"defaultRequire": 1}
+}
