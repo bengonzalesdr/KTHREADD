@@ -1,3 +1,9 @@
+# KTHREADD 4.1 development
+
+The `upgrade/4.1-cpvp` branch contains the comprehensive upgrade. See [changes and verification status](docs/4.1-UPGRADE.md). The existing tested release remains available during validation.
+
+---
+
 # KTHREADD
 
 Independent, open-source PvP client for **Minecraft Java 1.20.4**, **Fabric**, and **Java 17**.

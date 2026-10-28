@@ -19,17 +19,26 @@ public final class ProfileStore {
     }
     public Profile load(String name) {
         Path file = path(name);
+        lastError=null;
         if (!Files.exists(file)) return new Profile();
         try {
-            if (Files.size(file) > 2_000_000) throw new IOException("Profile exceeds 2 MB");
-            Profile p = gson.fromJson(Files.readString(file), Profile.class);
-            if (p == null || p.schema != 1) throw new IOException("Unsupported profile schema");
-            p.sanitize(); return p;
+            Profile p=read(file); blocked.remove(name); return p;
         } catch (IOException | RuntimeException e) {
             blocked.add(name); lastError = "Cannot load profile " + name + "; original preserved: " + e.getMessage();
             try { Files.copy(file, root.resolve(name + "-" + System.currentTimeMillis() + ".broken")); } catch (IOException ignored) { }
+            try {
+                Profile recovered=read(root.resolve(name+".json.bak"));
+                lastError="Recovered backup for " + name + "; damaged original preserved. Save under a new name.";
+                return recovered;
+            } catch(IOException | RuntimeException ignored) { }
             return new Profile();
         }
+    }
+    private Profile read(Path file) throws IOException {
+        if(Files.size(file)>2_000_000) throw new IOException("Profile exceeds 2 MB");
+        Profile p=gson.fromJson(Files.readString(file),Profile.class);
+        if(p==null || p.schema!=1) throw new IOException("Unsupported profile schema");
+        p.sanitize(); return p;
     }
     public void save(String name, Profile p) throws IOException {
         Path file = path(name);
@@ -38,9 +47,19 @@ public final class ProfileStore {
         Path temp = Files.createTempFile(root, name + "-", ".tmp");
         try {
             Files.writeString(temp, gson.toJson(p));
-            try { Files.move(temp, file, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE); }
-            catch (AtomicMoveNotSupportedException e) { Files.move(temp, file, StandardCopyOption.REPLACE_EXISTING); }
+            if(Files.exists(file)) {
+                // Validate before rotating: a damaged original must never replace a good backup.
+                read(file);
+                Path backupTemp=Files.createTempFile(root,name+"-backup-",".tmp");
+                try { Files.copy(file,backupTemp,StandardCopyOption.REPLACE_EXISTING); replace(backupTemp,root.resolve(name+".json.bak")); }
+                finally { Files.deleteIfExists(backupTemp); }
+            }
+            replace(temp,file);
         } finally { Files.deleteIfExists(temp); }
+    }
+    private static void replace(Path source,Path target) throws IOException {
+        try { Files.move(source,target,StandardCopyOption.REPLACE_EXISTING,StandardCopyOption.ATOMIC_MOVE); }
+        catch(AtomicMoveNotSupportedException e) { Files.move(source,target,StandardCopyOption.REPLACE_EXISTING); }
     }
     public List<String> list() throws IOException {
         if (!Files.isDirectory(root)) return List.of();

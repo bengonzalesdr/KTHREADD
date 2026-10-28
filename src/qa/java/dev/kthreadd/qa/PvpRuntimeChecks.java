@@ -22,6 +22,7 @@ public final class PvpRuntimeChecks {
     private final ClientModule crystal=KthreaddClient.INSTANCE.modules.get("CrystalAura"),aura=KthreaddClient.INSTANCE.modules.get("KillAura");
     private CompletableFuture<?> pending;
     private int phase,wait,targetId;
+    private ModuleUpgradeChecks upgradeChecks;
     public PvpRuntimeChecks(Consumer<String> passed){this.passed=passed;}
     public boolean tick(){
         if(++wait>400)throw new AssertionError("PvP fixture timed out at phase "+phase);
@@ -116,8 +117,9 @@ public final class PvpRuntimeChecks {
                     var json=com.google.gson.JsonParser.parseString(java.nio.file.Files.readString(report)).getAsJsonObject();
                     check(json.get("reactiveAttacks").getAsInt()==1&&json.getAsJsonArray("events").size()>0,"Fight report exports real reactive-attack events as local JSON");
                 } catch(java.io.IOException error){throw new AssertionError(error);}
-                crystal.setEnabled(false);return true;
+                crystal.setEnabled(false);EngineUpgradeChecks.run(passed);upgradeChecks=new ModuleUpgradeChecks(passed);next();
             }
+            case 11->{return upgradeChecks.tick();}
         }
         return false;
     }

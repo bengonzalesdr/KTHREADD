@@ -10,6 +10,6 @@ public abstract class EntityMixin {
     @Inject(method="getStepHeight",at=@At("RETURN"),cancellable=true)
     private void kthreadd$step(CallbackInfoReturnable<Float> cir) {
         var c=KthreaddClient.INSTANCE;
-        if(c!=null && (Object)this==MinecraftClient.getInstance().player && c.modules.on("Step")) cir.setReturnValue((float)c.modules.get("Step").value("Height"));
+        if(c!=null && (Object)this==MinecraftClient.getInstance().player && c.modules.on("Step") && dev.kthreadd.movement.MovementControl.ordinary() && MinecraftClient.getInstance().player.isOnGround() && !MinecraftClient.getInstance().player.isSneaking()) cir.setReturnValue((float)c.modules.get("Step").value("Height"));
     }
 }

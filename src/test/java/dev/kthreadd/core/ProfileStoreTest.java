@@ -32,6 +32,20 @@ class ProfileStoreTest {
         assertTrue(Files.list(dir).anyMatch(p -> p.toString().endsWith(".broken")));
         assertThrows(IllegalStateException.class, () -> store.save("bad", new Profile()));
     }
+    @Test void previousValidSaveRecoversCorruptionWithoutOverwritingEvidence() throws Exception {
+        var store=new ProfileStore(dir); var first=new Profile(); first.searchBlock="minecraft:gold_ore";
+        store.save("recover",first); var second=new Profile(); second.searchBlock="minecraft:coal_ore"; store.save("recover",second);
+        Files.writeString(dir.resolve("recover.json"),"{broken");
+        assertEquals("minecraft:gold_ore",store.load("recover").searchBlock);
+        assertEquals("{broken",Files.readString(dir.resolve("recover.json")));
+        assertThrows(IllegalStateException.class,()->store.save("recover",new Profile()));
+        assertEquals(java.util.List.of("recover"),store.list());
+    }
+    @Test void successfulLoadClearsOldFailureState() throws Exception {
+        var store=new ProfileStore(dir); Files.writeString(dir.resolve("retry.json"),"{broken"); store.load("retry");
+        Files.writeString(dir.resolve("retry.json"),"{\"schema\":1}"); store.load("retry");
+        assertNull(store.lastError); assertDoesNotThrow(()->store.save("retry",new Profile()));
+    }
     @Test void traversalAndEmptyNamesAreRejected() {
         var store = new ProfileStore(dir);
         for (String name : new String[]{"../outside", "", "x/y", "C:evil", "a..b"})

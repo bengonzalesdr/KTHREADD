@@ -2,7 +2,7 @@ plugins {
     id 'fabric-loom' version '1.6.12'
     id 'maven-publish'
 }
-version = '4.0-port.6-render'
+version = '4.1.0-beta.1'
 group = 'dev.kthreadd'
 base { archivesName = 'KTHREADD-1.20.4' }
 repositories { mavenCentral() }
@@ -35,7 +35,7 @@ loom {
         qaClient {
             client()
             source sourceSets.qa
-            runDir 'run-qa-render6'
+            runDir 'run-qa-4.1-beta1'
             vmArg '-Xmx1536m'
             programArgs '--width', '1280', '--height', '720', '--username', 'KTHREADDQA'
         }

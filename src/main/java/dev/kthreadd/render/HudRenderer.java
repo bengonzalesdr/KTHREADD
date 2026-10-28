@@ -35,10 +35,21 @@ public final class HudRenderer {
                 draw(ctx,"Coordinates",lines,0.01,0.95,color,editing,false);
             }
         }
-        if(h.flag("Stats") || editing) draw(ctx,"Stats",List.of(mc.getCurrentFps()+" FPS | "+Math.round(mc.player.getVelocity().horizontalLength()*20*10)/10.0+" m/s | "+mc.player.getHorizontalFacing().asString()),0.01,0.88,color,editing,false);
+        if(h.flag("Stats") || editing) {
+            var entry=mc.getNetworkHandler()==null?null:mc.getNetworkHandler().getPlayerListEntry(mc.player.getUuid());
+            draw(ctx,"Stats",List.of(mc.getCurrentFps()+" FPS | "+Math.round(mc.player.getVelocity().horizontalLength()*20*10)/10.0+" m/s | "+mc.player.getHorizontalFacing().asString()+" | "+(entry==null?"?":entry.getLatency())+"ms"),0.01,0.88,color,editing,false);
+        }
         if(h.flag("Combat") || editing) {
-            int totems=0; for(int i=0;i<mc.player.getInventory().size();i++) { var s=mc.player.getInventory().getStack(i); if(s.isOf(Items.TOTEM_OF_UNDYING)) totems+=s.getCount(); }
-            draw(ctx,"Combat",List.of("HP "+Math.round(mc.player.getHealth()+mc.player.getAbsorptionAmount())+" | Armor "+mc.player.getArmor()+" | Totems "+totems),0.01,0.82,color,editing,false);
+            int totems=0,crystals=0,obsidian=0; for(int i=0;i<mc.player.getInventory().size();i++) { var s=mc.player.getInventory().getStack(i); if(s.isOf(Items.TOTEM_OF_UNDYING)) totems+=s.getCount(); if(s.isOf(Items.END_CRYSTAL)) crystals+=s.getCount(); if(s.isOf(Items.OBSIDIAN)) obsidian+=s.getCount(); }
+            int durability=WorldOverlay.minimumDurability(mc.player);
+            List<String> combat=new ArrayList<>();
+            combat.add("HP "+Math.round(mc.player.getHealth()+mc.player.getAbsorptionAmount())+" | Armor "+mc.player.getArmor()+" | Totems "+totems);
+            combat.add("Crystals "+crystals+" | Obsidian "+obsidian+" | Armor min "+durability+"%"+(durability<=h.value("ArmorWarning")?" [LOW]":""));
+            if(h.flag("CrystalThreat")) {
+                int nearby=0; for(var entity:mc.world.getEntities()) if(entity instanceof net.minecraft.entity.decoration.EndCrystalEntity && entity.squaredDistanceTo(mc.player)<=144) nearby++;
+                combat.add("Crystals within 12m: "+nearby+" | Offhand "+(mc.player.getOffHandStack().isOf(Items.TOTEM_OF_UNDYING)?"Totem":"unprotected"));
+            }
+            draw(ctx,"Combat",combat,0.01,0.78,color,editing,false);
         }
         if(h.flag("Armor") || editing) {
             var area=area(ctx,"Armor",78,22,0.43,0.87,color,editing);
@@ -51,31 +62,37 @@ public final class HudRenderer {
         if(h.flag("TargetHUD") || editing) {
             net.minecraft.entity.player.PlayerEntity target=mc.world.getPlayers().stream().filter(p -> p!=mc.player && p.isAlive() && !c.isFriend(p.getGameProfile().getName()) && p.distanceTo(mc.player)<12).min(Comparator.comparingDouble(p -> p.squaredDistanceTo(mc.player))).orElse(null);
             if(target!=null || editing) {
-                var area=area(ctx,"TargetHUD",150,42,0.4,0.65,color,editing);
-                ctx.drawText(mc.textRenderer,target==null?"TargetHUD":target.getName().getString(),area.x()+5,area.y()+5,color,true);
+                var area=area(ctx,"TargetHUD",190,66,0.4,0.65,color,editing);
+                ctx.drawText(mc.textRenderer,text(mc,target==null?"TargetHUD":target.getName().getString(),180),area.x()+5,area.y()+5,color,true);
                 float health=target==null?20:target.getHealth()+target.getAbsorptionAmount();
                 String detail="HP "+Math.round(health)+(target==null?"":" | Pops "+c.totemPops.getOrDefault(target.getUuid(),0));
                 ctx.drawText(mc.textRenderer,detail,area.x()+5,area.y()+17,0xffffffff,true);
-                ctx.fill(area.x()+5,area.y()+31,area.x()+145,area.y()+36,0xff333333);
-                ctx.fill(area.x()+5,area.y()+31,area.x()+5+(int)(140*Math.min(1,health/20)),area.y()+36,color);
+                String armor=target==null?"Armor 20 | Min 100%":"Armor "+target.getArmor()+" | Min "+WorldOverlay.minimumDurability(target)+"% | "+Math.round(target.distanceTo(mc.player)*10)/10.0+"m";
+                ctx.drawText(mc.textRenderer,armor,area.x()+5,area.y()+29,0xffdddddd,true);
+                if(target!=null) { int i=0; for(var stack:target.getArmorItems()) { ctx.drawItem(stack,area.x()+5+i*18,area.y()+41); i++; } }
+                float fraction=target==null?1:VisualPolicy.healthFraction(target.getHealth(),target.getMaxHealth(),target.getAbsorptionAmount());
+                ctx.fill(area.x()+5,area.y()+60,area.x()+185,area.y()+63,0xff333333);
+                ctx.fill(area.x()+5,area.y()+60,area.x()+5+(int)(180*fraction),area.y()+63,color);
             }
         }
         if((h.flag("Waypoints") && c.modules.on("Waypoints")) || editing) {
             List<String> waypoints=new ArrayList<>();
-            if(!c.privacy()) for(var w:c.profile.waypoints) if(w.dimension.equals(mc.world.getRegistryKey().getValue().toString()) && waypoints.size()<8) waypoints.add(w.name+" "+(int)Math.sqrt(mc.player.squaredDistanceTo(w.x,w.y,w.z))+"m");
+            if(!c.privacy()) c.profile.waypoints.stream().filter(w -> w.dimension.equals(mc.world.getRegistryKey().getValue().toString()) && mc.player.squaredDistanceTo(w.x,w.y,w.z)<=Math.pow(c.modules.get("Waypoints").value("Range"),2)).sorted(Comparator.comparingDouble(w -> mc.player.squaredDistanceTo(w.x,w.y,w.z))).limit(8).forEach(w -> waypoints.add(w.name+" "+(int)Math.sqrt(mc.player.squaredDistanceTo(w.x,w.y,w.z))+"m"));
             if(!waypoints.isEmpty() || editing) draw(ctx,"Waypoints",waypoints.isEmpty()?List.of("Waypoints"+(c.privacy()?" [privacy]":"")):waypoints,0.7,0.65,color,editing,false);
         }
         if(c.modules.on("HighwayNavigation") || editing) {
             double x=mc.player.getX(),z=mc.player.getZ();
-            double cross=Math.min(Math.min(Math.abs(x),Math.abs(z)),Math.min(Math.abs(x-z),Math.abs(x+z))/Math.sqrt(2));
-            String line=String.format(Locale.ROOT,"Highway %s | yaw %.1f%s",mc.player.getHorizontalFacing().asString(),MathHelper.wrapDegrees(mc.player.getYaw()),c.privacy()?"":" | offset "+Math.round(cross)+"m");
+            var road=VisualPolicy.highway(x,z);
+            double snap=Math.round(mc.player.getYaw()/45)*45;
+            String line=String.format(Locale.ROOT,"Highway %s | yaw %.1f | turn %+.1f%s",mc.player.getHorizontalFacing().asString(),MathHelper.wrapDegrees(mc.player.getYaw()),MathHelper.wrapDegrees(snap-mc.player.getYaw()),c.privacy()?"":" | "+road.axis()+" offset "+Math.round(road.offset())+"m");
             draw(ctx,"Highway",List.of(line),0.35,0.92,color,editing,false);
         }
         if(!editing && c.modules.notifications.enabled()) {
             int y=mc.getWindow().getScaledHeight()-25-c.notices.size()*13;
-            for(var n:c.notices) { String text=mc.textRenderer.trimToWidth(n.text(),mc.getWindow().getScaledWidth()-24); int width=mc.textRenderer.getWidth(text); ctx.fill(8,y-2,width+16,y+11,0xc0181818); ctx.fill(8,y-2,10,y+11,color); ctx.drawText(mc.textRenderer,text,13,y,0xffffffff,true); y+=14; }
+            for(var n:c.notices) { String text=mc.textRenderer.trimToWidth(n.text(),Math.max(1,mc.getWindow().getScaledWidth()-24)); int width=mc.textRenderer.getWidth(text); ctx.fill(8,y-2,width+16,y+11,0xe0181818); ctx.fill(8,y-2,10,y+11,color); ctx.drawText(mc.textRenderer,text,13,y,0xffffffff,true); double remain=Math.max(0,Math.min(1,(n.expires()-System.currentTimeMillis())/5000.0)); ctx.fill(10,y+10,10+(int)((width+6)*remain),y+11,color); y+=14; }
         }
     }
+    private static String text(MinecraftClient mc,String text,int width) { return mc.textRenderer.trimToWidth(text,width); }
     private void draw(DrawContext ctx,String id,List<String> lines,double dx,double dy,int color,boolean editing,boolean right) {
         int width=lines.stream().mapToInt(mc.textRenderer::getWidth).max().orElse(30)+6,height=lines.size()*11+4;
         int sw=mc.getWindow().getScaledWidth(),sh=mc.getWindow().getScaledHeight();

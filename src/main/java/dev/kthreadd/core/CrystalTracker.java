@@ -36,6 +36,9 @@ public final class CrystalTracker<P> {
         placements.entrySet().removeIf(e -> { if (now - e.getValue() < timeout) return false; expired++; return true; });
         // AttackRetry is independent of placement expiry. Entity unload/removal or clear releases these entries.
     }
+    public java.util.Set<P> expiringBases(long now,long timeout) {
+        var expired=new java.util.HashSet<P>();placements.forEach((base,sent)->{if(now-sent>=timeout)expired.add(base);});return java.util.Set.copyOf(expired);
+    }
     public int pending() { return placements.size(); }
     public int confirmed() { return confirmed; }
     public int expired() { return expired; }

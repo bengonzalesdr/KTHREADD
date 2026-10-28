@@ -7,16 +7,16 @@ import net.minecraft.item.*;
 import net.minecraft.screen.slot.SlotActionType;
 import static dev.kthreadd.modules.combat.CombatSupport.mc;
 public final class PvpArmorModule extends ClientModule {
- private long next;
+ private int next; private Object player;
  public PvpArmorModule(){super("AutoArmor",Category.COMBAT,"Ranks armor by protection, toughness, blast/protection enchantments and remaining durability. Swaps old armor into the original source slot.");number("Delay",100,50,1000,50);flag("AvoidBinding",true);flag("PreferBlastProtection",true);flag("PreserveElytra",true);}
- public void tick(){if(!InventoryModules.ready()||mc.player.isDead()||System.currentTimeMillis()<next)return;
+ public void tick(){if(player!=mc.player){player=mc.player;next=0;}if(!InventoryModules.ready()||mc.player.isDead()||mc.player.isUsingItem()||mc.player.age<next)return;
   for(var type:new EquipmentSlot[]{EquipmentSlot.HEAD,EquipmentSlot.CHEST,EquipmentSlot.LEGS,EquipmentSlot.FEET}){
    var worn=mc.player.getEquippedStack(type);if(EnchantmentHelper.hasBindingCurse(worn)||flag("PreserveElytra")&&worn.isOf(Items.ELYTRA))continue;
    int best=-1;double value=score(worn);for(int i=0;i<36;i++){var candidate=mc.player.getInventory().getStack(i);if(!(candidate.getItem() instanceof ArmorItem armor)||armor.getSlotType()!=type||flag("AvoidBinding")&&EnchantmentHelper.hasBindingCurse(candidate))continue;double n=score(candidate);if(n>value+0.001){value=n;best=i;}}
    if(best<0)continue;if(!CombatActions.claim("AutoArmor"))return;int source=InventoryModules.slot(best),sync=mc.player.playerScreenHandler.syncId;
    mc.interactionManager.clickSlot(sync,source,0,SlotActionType.PICKUP,mc.player);mc.interactionManager.clickSlot(sync,8-type.getEntitySlotId(),0,SlotActionType.PICKUP,mc.player);
    if(!mc.player.playerScreenHandler.getCursorStack().isEmpty())mc.interactionManager.clickSlot(sync,source,0,SlotActionType.PICKUP,mc.player);
-   next=System.currentTimeMillis()+(long)value("Delay");return;
+   next=mc.player.age+Math.max(1,(int)Math.ceil(value("Delay")/50));return;
   }
  }
  private double score(ItemStack s){
@@ -31,6 +31,7 @@ public final class PvpArmorModule extends ClientModule {
   float crystal=net.minecraft.entity.DamageUtil.getInflictedDamage(net.minecraft.entity.DamageUtil.getDamageLeft(40,armor,toughness),Math.min(20,explosionProtection));
   float melee=net.minecraft.entity.DamageUtil.getInflictedDamage(net.minecraft.entity.DamageUtil.getDamageLeft(10,armor,toughness),Math.min(20,protection));
   double crystalWeight=flag("PreferBlastProtection")?.85:.35;
-  return -(crystal*crystalWeight+melee*(1-crystalWeight))+durability*.01;
+  return -(crystal*crystalWeight+melee*(1-crystalWeight))+durability*.01-CombatInventoryPolicy.durabilityPenalty(durability);
  }
+ protected void onDisable(){next=0;player=null;}
 }

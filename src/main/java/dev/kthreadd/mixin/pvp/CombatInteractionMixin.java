@@ -8,5 +8,6 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ClientPlayerInteractionManager.class)
 public abstract class CombatInteractionMixin {
- @Inject(method="attackEntity",at=@At("HEAD"))private void kthreadd$pvp$critical(PlayerEntity player,Entity target,CallbackInfo ci){CombatHooks.critical(target);}
+ @Inject(method="attackEntity",at=@At("HEAD"),cancellable=true)
+ private void kthreadd$pvp$critical(PlayerEntity player,Entity target,CallbackInfo ci){if(!CombatHooks.prepareAttack(target,false))ci.cancel();}
 }

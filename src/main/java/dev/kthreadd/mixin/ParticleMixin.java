@@ -9,6 +9,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ParticleMixin {
     @Inject(method="addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)Lnet/minecraft/client/particle/Particle;",at=@At("HEAD"),cancellable=true)
     private void kthreadd$budget(ParticleEffect effect,double x,double y,double z,double vx,double vy,double vz,CallbackInfoReturnable<Particle> cir) {
-        var c=KthreaddClient.INSTANCE; if(c!=null && c.modules.on("NoLag") && c.particlesThisTick++>=c.modules.get("NoLag").value("ParticlesPerTick")) cir.setReturnValue(null);
+        var c=KthreaddClient.INSTANCE; var mc=net.minecraft.client.MinecraftClient.getInstance();
+        if(c==null || !c.modules.on("NoLag")) return;
+        var module=c.modules.get("NoLag"); double range=module.value("MaxDistance");
+        if((mc.player!=null && mc.player.squaredDistanceTo(x,y,z)>range*range) || c.particlesThisTick++>=module.value("ParticlesPerTick")) cir.setReturnValue(null);
     }
 }

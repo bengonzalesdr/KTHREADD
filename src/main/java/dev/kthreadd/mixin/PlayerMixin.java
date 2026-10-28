@@ -10,6 +10,6 @@ public abstract class PlayerMixin {
     @Inject(method="clipAtLedge",at=@At("RETURN"),cancellable=true)
     private void kthreadd$edge(CallbackInfoReturnable<Boolean> cir) {
         var mc=MinecraftClient.getInstance(); var c=KthreaddClient.INSTANCE;
-        if(c!=null && (Object)this==mc.player && c.modules.on("SafeWalk") && mc.player.isOnGround()) cir.setReturnValue(true);
+        if(c!=null && (Object)this==mc.player && c.modules.on("Safewalk") && dev.kthreadd.movement.MovementControl.ordinary() && mc.player.isOnGround() && (c.modules.get("Safewalk").flag("WhileJumping") || !mc.options.jumpKey.isPressed())) cir.setReturnValue(true);
     }
 }

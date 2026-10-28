@@ -15,6 +15,20 @@ public final class ClientCommands {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher,access) -> dispatcher.register(literal("kthread")
             .executes(ctx -> reply(ctx.getSource(),"Delete: ClickGui | Right Shift: HUD editor | /kthread toggle/bind/profile/waypoint/privacy/search/friend"))
             .then(literal("combatstats").executes(ctx -> reply(ctx.getSource(),((dev.kthreadd.modules.combat.CrystalCombatModule)c.modules.get("CrystalAura")).diagnostics())))
+            .then(literal("preset").then(argument("name",StringArgumentType.word()).executes(ctx->{
+                try {CombatPresets.apply(c.modules.all,CombatPresets.changes(StringArgumentType.getString(ctx,"name")));c.changed();return reply(ctx.getSource(),"Applied CPvP settings. Module toggles are unchanged; enable CrystalAura / AutoTotem / AutoArmor as desired.");}
+                catch(IllegalArgumentException error){return reply(ctx.getSource(),error.getMessage());}
+            })))
+            .then(literal("set").then(argument("module",StringArgumentType.word()).then(argument("setting",StringArgumentType.string()).then(argument("value",StringArgumentType.greedyString()).executes(ctx->{
+                try{
+                    var module=c.modules.get(StringArgumentType.getString(ctx,"module"));if(module==null)return reply(ctx.getSource(),"Unknown module");
+                    var setting=module.setting(StringArgumentType.getString(ctx,"setting"));String value=StringArgumentType.getString(ctx,"value");
+                    if(setting.isText())setting.setText(value);
+                    else if(setting.isMode()){var old=setting.text();setting.setText(value);if(!setting.text().equalsIgnoreCase(value))throw new IllegalArgumentException("Invalid mode; current mode: "+old);}
+                    else{double number=value.equalsIgnoreCase("on")||value.equalsIgnoreCase("true")?1:value.equalsIgnoreCase("off")||value.equalsIgnoreCase("false")?0:Double.parseDouble(value);if(!Double.isFinite(number)||number<setting.min||number>setting.max)throw new IllegalArgumentException("Value must be between "+setting.min+" and "+setting.max);setting.set(number);}
+                    c.changed();return reply(ctx.getSource(),module.name+" / "+setting.name+": "+setting.display());
+                }catch(IllegalArgumentException|java.util.NoSuchElementException error){return reply(ctx.getSource(),"Invalid setting/value: "+error.getMessage());}
+            })))) )
             .then(literal("combatreport").executes(ctx -> {
                 try { return reply(ctx.getSource(),"Saved combat report: "+((dev.kthreadd.modules.combat.CrystalCombatModule)c.modules.get("CrystalAura")).exportReport()); }
                 catch(java.io.IOException error) { return reply(ctx.getSource(),"Could not save combat report: "+error.getMessage()); }
