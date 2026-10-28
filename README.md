@@ -1,54 +1,41 @@
-# KTHREADD 4.1 development
-
-The `upgrade/4.1-cpvp` branch contains the comprehensive upgrade. See [changes and verification status](docs/4.1-UPGRADE.md). The existing tested release remains available during validation.
-
----
-
 # KTHREADD
 
-Independent, open-source PvP client for **Minecraft Java 1.20.4**, **Fabric**, and **Java 17**.
+Open-source Minecraft **1.20.4** Fabric client, with a focus on crystal PvP. Requires **Java 17**. Authored source is MIT licensed with original notices preserved.
 
-[Download the latest release](https://github.com/bengonzalesdr/KTHREADD/releases) Â· [Report an issue](https://github.com/bengonzalesdr/KTHREADD/issues) Â· [Rendering changes](docs/RENDER-UPDATE.md) Â· [Testing](docs/TESTING.md)
+**[Download 4.1.0-beta.1](https://github.com/bengonzalesdr/KTHREADD/releases/tag/v4.1.0-beta.1)** · [Module audit](docs/MODULE-AUDIT-4.1.md) · [Upgrade guide](docs/4.1-UPGRADE.md) · [Testing](docs/TESTING.md) · [Issues](https://github.com/bengonzalesdr/KTHREADD/issues)
 
 ## Install
 
-1. Install Minecraft Java **1.20.4** with Fabric Loader (**0.15.11 or later**; tested together on **0.19.5**) and Java **17**.
-2. Download **`KTHREADD-1.20.4-4.0-port.6-render.jar`** from Releases, plus **`fabric-api-0.97.2+1.20.4.jar`** from the same release or the official [Fabric API project](https://github.com/FabricMC/fabric).
-3. Put the client JAR and one copy of Fabric API into your instance's `mods` folder. Move older versions of this client out first. Source ZIPs and development/QA JARs do not belong in `mods`.
-4. Start Fabric 1.20.4. Press **Delete** to open the menu. Right-click a module for its settings.
+1. Use Minecraft Java **1.20.4**, Fabric Loader **0.15.11 or later** (production-tested with **0.19.5**), and Java **17**.
+2. Download `KTHREADD-1.20.4-4.1.0-beta.1.jar` and `fabric-api-0.97.2+1.20.4.jar` from the release. Put both into your instance's `mods` folder. Move older KTHREADD versions out first; keep one copy of Fabric API.
+3. Start Fabric 1.20.4. Press **Delete** for the menu; right-click a module for settings. **Ctrl+F** searches module and setting names. **Right Shift** opens the HUD editor.
 
-The default Minecraft instance is `%APPDATA%\.minecraft` on Windows; other launchers may use their own instance folder. Exit code 1 is generic: attach the relevant crash report or `latest.log` with a bug report after removing personal/server details.
+The default Windows instance is `%APPDATA%\.minecraft`; other launchers can use their own instance folders. Source ZIPs and development/QA JARs do not go into `mods`. The release ZIP contains the client, Fabric API, instructions and checksums.
 
-## Features
+## Crystal PvP setup
 
-Storage ESP and Entity ESP can display through blocks in loaded chunks. Tracers use thin, configurable lines and compensate for view bob. Geometry uses camera-relative coordinates and interpolated entity positions. Profiles, friend lists and HUD settings are stored locally.
+Run `/kthread preset balanced`, then enable **CrystalAura**, **AutoTotem**, **AutoArmor** and **AntiFriendHit** as desired. Presets change settings atomically and **do not enable modules**. `aggressive` and `defensive` are alternative starting values; all retain self/friend protections. Add teammates with `/kthread friend add NAME`.
 
-KTHREADD focuses on crystal combat, melee, offhand protection, armor and surround. CrystalAura includes damage ranking, forecast checks, server-spawn reactions, pending-damage reservations and a bounded local fight recorder. `/kthread combatstats` shows diagnostics; `/kthread combatreport` saves a local JSON report. See [CPvP behavior](docs/CPVP-PORT5.md). It does not contain an AI model.
+`/kthread set MODULE "SETTING NAME" VALUE` allows exact tuning. `/kthread combatstats` shows live crystal diagnostics; `/kthread combatreport` exports a bounded local recording after a fight. These settings are starting points, not measured best settings for every server.
 
-This is an independently authored reconstruction of IngrosWare gameplay concepts, not a redistribution of its code or assets. No verified license for the legacy IngrosWare binary was found, so the original JAR, decompiled source, fonts and assets are excluded. Original authors are credited in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+## What changed in 4.1
+
+- Bounded crystal work, confirmation-based retry timing/backoff, motion history, latency-adjusted conservative prediction, stable pressure focus and damage-trade filtering.
+- Stronger offhand fallback and two-hit threat assessment, durability-aware armor, stack-aware looting, suitable tools and safe container-supported block placement.
+- Melee weapon/cooldown ownership, guarded critical timing, charged bows, and renewed/cleaned-up protection after totem pops.
+- Deterministic movement priority with environment/input guards and correct key cleanup.
+- Incremental bounded storage scans, ESP/tracer filters and caps, richer combat HUD, setting search and profile backup recovery.
+
+All **54 registry entries** were audited. Seven already-correct hooks were retained rather than given cosmetic changes; the audit distinguishes them. No AI component is included. Full historical IngrosWare parity and universal competitive superiority are not claimed.
 
 ## With Creepy SalHack
 
-KTHREADD works independently. To use the companion [Creepy SalHack modernization](https://github.com/bengonzalesdr/creepy-salhack/tree/fabric-1.20.4-modernization/fabric-1.20.4), install both client JARs with one copy of Fabric API. SalHack opens with Left Arrow; KTHREADD opens with Delete. Enabled matching KTHREADD combat/ESP modules take priority by default. Maintain the friend lists for the clients you use.
+KTHREADD runs independently. The optional [community SalHack port](https://github.com/bengonzalesdr/creepy-salhack) remains unchanged and opens with **Left Arrow**. With both clients installed, matching KTHREADD combat and ESP modules take priority by default. Keep one copy of Fabric API and maintain the friend lists for the clients you use.
 
-## Build from source
+## Build and contribute
 
-Install a JDK **17**. The checked-in wrapper downloads **Gradle 8.6** with a pinned checksum. Run from this repository:
+Install JDK 17. Run `./gradlew build` (Windows: `.\gradlew.bat build`). The checksum-pinned wrapper uses Gradle 8.6; the installable remapped JAR is in `build/libs/`. Unit tests run with `build`; `runQaClient` uses temporary test worlds in the configured isolated QA directory.
 
-```sh
-./gradlew build
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). This is an independently authored reconstruction of gameplay concepts; the legacy IngrosWare binary, decompiled code, fonts and assets are excluded. Report bugs with exact versions, reproduction steps, settings and sanitized logs.
 
-Windows PowerShell:
-
-```powershell
-.\gradlew.bat build
-```
-
-The installable remapped JAR is written to `build/libs/`. For this version, use `KTHREADD-1.20.4-4.0-port.6-render.jar`. Unit tests run as part of `build`. `runQaClient` launches an isolated local test game and creates temporary test worlds under the configured QA directory.
-
-## Contributing and license
-
-See [CONTRIBUTING.md](CONTRIBUTING.md). Authored source is distributed under **MIT**, with inherited notices preserved in [LICENSE](LICENSE). Dependency and original-project attribution is documented separately. Minecraft itself is not included.
-
-This is a development release with targeted tests, not complete historical parity or a guarantee for every server. Please report reproducible issues with Minecraft/Fabric versions, the exact client build, relevant settings, and sanitized logs.
+This beta passed 57 unit tests, 61 targeted local game checks and 28 combined production checks. Remote-server performance, all settings, every shader/modpack and anti-cheat acceptance have not been comprehensively measured. Previous release tags and assets remain available for rollback.

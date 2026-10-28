@@ -1,0 +1,1652 @@
+[
+  {
+    "name": "Aimbot",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Remains the shared Packet/Client rotation service; look updates used by guarded melee/placement continue to honor its selected mode. No independent unsolicited target tracking was added.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "Mode",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "AntiChainPop",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Extends its temporary surround window on repeated local pops, schedules by player ticks, releases owned protection on module disable/disconnect/player change, and preserves an independently enabled surround.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": []
+  },
+  {
+    "name": "AntiFriendHit",
+    "category": "OTHER",
+    "status": "Audited; existing hook retained",
+    "changes": "Existing direct friend attack cancellation audited; already local and name-based, no cosmetic settings added.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": []
+  },
+  {
+    "name": "AntiVoid",
+    "category": "PLAYER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Spectator/dead/riding/vanilla flight/gliding/Flight exclusions. `Margin` and `Boost` configure the existing rescue, with no safe-position teleport or guarantee.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 1.0,
+        "name": "Margin",
+        "max": 16.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.1,
+        "name": "Boost",
+        "max": 1.0,
+        "step": 0.1
+      }
+    ]
+  },
+  {
+    "name": "AutoArmor",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Retains whole-set armor/toughness/enchantment ranking and safe source-slot replacement. Adds a progressive durability penalty below fifteen percent, pauses item use, schedules delay with player ticks and resets across player changes/toggle. Missing armor with an inventory replacement now counts as urgent maintenance.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 50.0,
+        "name": "Delay",
+        "max": 1000.0,
+        "step": 50.0
+      },
+      {
+        "min": 0.0,
+        "name": "AvoidBinding",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "PreferBlastProtection",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "PreserveElytra",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "AutoCrystalArmor",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Runs the same armor decision around live crystals using a spatially bounded query, respects screens/item-use guards and avoids duplicate work while AutoArmor is enabled.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 1.0,
+        "name": "Range",
+        "max": 16.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "AutoFeetObby",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Uses the common collision/reach/support/ownership guard, adds optional floor scaffold support, pauses during item use and resets pacing on disable or invalid state. New settings: FloorSupport (true), Rotate (true).",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 1.0,
+        "name": "Delay",
+        "max": 20.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "FloorSupport",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Rotate",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "AutoLog",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Living multiplayer player/network guard, consecutive danger `Delay`, reset on recovery/toggle or a found totem. Existing health+absorption and CheckTotems retained.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 1.0,
+        "name": "Health",
+        "max": 20.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "CheckTotems",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 1.0,
+        "name": "Delay",
+        "max": 20.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "AutoOffhandCrystal",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Shares utility health/crystal checks, fallback, cursor guard and one-transaction ownership; preserves current offhand if a requested protection item is unavailable.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 1.0,
+        "name": "Health",
+        "max": 36.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "CrystalCheck",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 1.0,
+        "name": "Delay",
+        "max": 10.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "AutoOffhandGap",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Uses the stronger enabled utility health threshold; accepts regular or enchanted golden apples; preserves an already held totem when apples are absent; can fall back to an available totem when AutoTotem is enabled.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 1.0,
+        "name": "Health",
+        "max": 36.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "CrystalCheck",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 1.0,
+        "name": "Delay",
+        "max": 10.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "AutoRespawn",
+    "category": "OTHER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "`Delay` in ticks, default 20; one request per death instead of repeated requests every second; resets on recovery/toggle.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 1.0,
+        "name": "Delay",
+        "max": 100.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "AutoTool",
+    "category": "PLAYER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Ranks suitability before raw speed on tool-required blocks, includes Efficiency, avoids configured low durability, skips air/unbreakable targets and item use, claims actual slot changes, and restores only its own selection. Manual selection and player changes release ownership. New settings: MinDurability (3), Restore (true).",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 1.0,
+        "name": "MinDurability",
+        "max": 100.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Restore",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "AutoTotem",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Shares one safe offhand transaction with utility offhands; caches loaded-crystal exposure by player/world/tick and reserves the two strongest hits from at most sixteen nearest crystals within twelve blocks. Choice changes, player changes and blocked screens reset delay state.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 1.0,
+        "name": "Health",
+        "max": 22.0,
+        "step": 1.0
+      },
+      {
+        "min": 1.0,
+        "name": "Delay",
+        "max": 10.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "CrystalDanger",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "SafetyMargin",
+        "max": 10.0,
+        "step": 0.5
+      }
+    ]
+  },
+  {
+    "name": "AutoTrap",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Keeps a valid target stable; orders lower supports before upper rings, scaffolds low ring floors, adds the missing tall-mode roof support, falls back to obsidian when requested ender chests are missing, pauses item use and disables only after observed world completion.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 1.0,
+        "name": "range",
+        "max": 10.0,
+        "step": 0.5
+      },
+      {
+        "min": 1.0,
+        "name": "BlocksPerTick",
+        "max": 10.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Rotate",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "toggleMode",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Mode",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "announceUsage",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "EChests",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "AutoWalk",
+    "category": "MOVEMENT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Stops requesting forward in menus, on focus loss, death, spectator or riding; restores physical keyboard/mouse binding instead of polling mouse codes as keyboard codes.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": []
+  },
+  {
+    "name": "ChestStealer",
+    "category": "OTHER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Can merge matching items into partially filled stacks even when every inventory slot is occupied; respects item/component compatibility and stack limits. Skips untakeable/unreceivable items, rotates container search after a transfer, resets on screen-handler changes and claims each transfer.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 2.0,
+        "name": "Delay",
+        "max": 20.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "ClickGui",
+    "category": "RENDER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Searches setting names as well as module names/descriptions; matching settings expand automatically. Ctrl+F focuses/selects search, Escape clears a focused query. Full setting values/ranges are available in tooltips. Configuration-only panels no longer reserve an empty keybind row.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": [
+      {
+        "min": 0.65,
+        "name": "Scale",
+        "max": 1.5,
+        "step": 0.05
+      },
+      {
+        "min": 0.0,
+        "name": "Rounded",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Animations",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Tooltips",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 80.0,
+        "name": "Opacity",
+        "max": 255.0,
+        "step": 15.0
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "category": "RENDER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Click GUI header foreground switches between dark/white for bright/dark chosen accents. RGB/rainbow theme remains intact.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "Red",
+        "max": 255.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Green",
+        "max": 255.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Blue",
+        "max": 255.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Rainbow",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "Criticals",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Excludes crystal/nonliving targets, flying/liquid/riding/climbing/sprinting/blind/slow-fall cases; requires usable attack damage. Jump mode postpones attack until natural descent; packet mode checks cooldown/headroom and emits at most one offset pair per player tick even when Aura and mixin both call it. Packet attempts are not server confirmation.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "Mode",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "CrystalAura",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Damage evaluation count/time budgets, position retry backoff, observed confirmation timing, motion history and latency-adjusted prediction, damage-trade filter, bounded break ranking, stable pressure focus and stabilized placement visualization.",
+    "details": "4.1-UPGRADE.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "BreakMode",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "PlaceMode",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "PlaceRange",
+        "max": 6.0,
+        "step": 0.25
+      },
+      {
+        "min": 0.0,
+        "name": "BreakRange",
+        "max": 6.0,
+        "step": 0.25
+      },
+      {
+        "min": 0.0,
+        "name": "WallsRange",
+        "max": 6.0,
+        "step": 0.25
+      },
+      {
+        "min": 0.0,
+        "name": "MinimumDamage",
+        "max": 36.0,
+        "step": 0.5
+      },
+      {
+        "min": 0.0,
+        "name": "MaxSelfDamage",
+        "max": 36.0,
+        "step": 0.5
+      },
+      {
+        "min": 0.0,
+        "name": "Faceplace",
+        "max": 36.0,
+        "step": 0.5
+      },
+      {
+        "min": 0.0,
+        "name": "PlaceDelay",
+        "max": 50.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "AttackSpeed",
+        "max": 20.0,
+        "step": 1.0
+      },
+      {
+        "min": 50.0,
+        "name": "RetryDelay",
+        "max": 3000.0,
+        "step": 50.0
+      },
+      {
+        "min": 0.0,
+        "name": "MultiPlace",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 1.0,
+        "name": "MultiPlaceSpeed",
+        "max": 10.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "AutoSwitch",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "AntiSuicide",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "AntiWeakness",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "PauseWhileEating",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "PauseIfHittingBlock",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "ShowRotations",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Players",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Hostile",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Animals",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Tamed",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "ProtectFriends",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Place",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Break",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 1.0,
+        "name": "EnemyRange",
+        "max": 16.0,
+        "step": 1.0
+      },
+      {
+        "min": 1.0,
+        "name": "CandidatesPerTick",
+        "max": 128.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "LethalPriority",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "SelfDamageWeight",
+        "max": 3.0,
+        "step": 0.25
+      },
+      {
+        "min": 0.5,
+        "name": "SafetyMargin",
+        "max": 10.0,
+        "step": 0.5
+      },
+      {
+        "min": 0.0,
+        "name": "ArmorFaceplace",
+        "max": 100.0,
+        "step": 5.0
+      },
+      {
+        "min": 0.0,
+        "name": "AdaptiveRetry",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 100.0,
+        "name": "AttackRetry",
+        "max": 2000.0,
+        "step": 50.0
+      },
+      {
+        "min": 0.0,
+        "name": "PredictionTicks",
+        "max": 3.0,
+        "step": 0.5
+      },
+      {
+        "min": 0.0,
+        "name": "Diagnostics",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "FightRecorder",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "ReactOnSpawn",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "TargetLockMs",
+        "max": 3000.0,
+        "step": 50.0
+      },
+      {
+        "min": 0.0,
+        "name": "ReservePendingDamage",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 1.0,
+        "name": "MaxDecisionMs",
+        "max": 25.0,
+        "step": 0.5
+      },
+      {
+        "min": 32.0,
+        "name": "MaxDamageEvaluations",
+        "max": 1024.0,
+        "step": 32.0
+      },
+      {
+        "min": 8.0,
+        "name": "BreakCandidates",
+        "max": 256.0,
+        "step": 8.0
+      },
+      {
+        "min": 1.0,
+        "name": "MaxTargets",
+        "max": 12.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "LatencyPrediction",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "RetryBackoff",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "MinimumTradeRatio",
+        "max": 3.0,
+        "step": 0.25
+      },
+      {
+        "min": 0.0,
+        "name": "Render",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Red",
+        "max": 255.0,
+        "step": 5.0
+      },
+      {
+        "min": 0.0,
+        "name": "Green",
+        "max": 255.0,
+        "step": 5.0
+      },
+      {
+        "min": 0.0,
+        "name": "Blue",
+        "max": 255.0,
+        "step": 5.0
+      },
+      {
+        "min": 0.0,
+        "name": "Alpha",
+        "max": 255.0,
+        "step": 5.0
+      }
+    ]
+  },
+  {
+    "name": "ElytraFly",
+    "category": "MOVEMENT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Applies only during existing gliding, yields to Flight; `Sink` controls neutral descent. Simultaneous jump+sneak neutralize vertical input.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.1,
+        "name": "Speed",
+        "max": 2.0,
+        "step": 0.1
+      },
+      {
+        "min": 0.05,
+        "name": "Vertical",
+        "max": 1.0,
+        "step": 0.05
+      },
+      {
+        "min": 0.0,
+        "name": "Sink",
+        "max": 0.2,
+        "step": 0.01
+      }
+    ]
+  },
+  {
+    "name": "EntityESP",
+    "category": "RENDER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Friend/invisible filters, spectator exclusion, nearest-first bounded candidates/render count. Existing interpolated camera-relative boxes, line width and through-wall selection preserved.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": [
+      {
+        "min": 8.0,
+        "name": "Range",
+        "max": 192.0,
+        "step": 8.0
+      },
+      {
+        "min": 0.0,
+        "name": "PlayersOnly",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "ThroughWalls",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.5,
+        "name": "LineWidth",
+        "max": 3.0,
+        "step": 0.25
+      },
+      {
+        "min": 0.0,
+        "name": "IgnoreFriends",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "IgnoreInvisible",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 16.0,
+        "name": "MaxEntities",
+        "max": 512.0,
+        "step": 16.0
+      }
+    ]
+  },
+  {
+    "name": "FastBow",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Replaces the fixed three-tick shot with configurable ChargeTicks (default 20; range 3\u00e2\u20ac\u201c40), checks usable ammunition/creative state, screens/cursors and action ownership before normal bow release.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 3.0,
+        "name": "ChargeTicks",
+        "max": 40.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "FastCrystal",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Clears local use delay only while use is pressed, a live player/world exists, no screen is open and the player is not already consuming an item.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": []
+  },
+  {
+    "name": "FastIce",
+    "category": "MOVEMENT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Wins over Speed only on grounded ice; retains player-only changes rather than global friction mutation.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.1,
+        "name": "Speed",
+        "max": 1.5,
+        "step": 0.05
+      }
+    ]
+  },
+  {
+    "name": "Flight",
+    "category": "MOVEMENT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Highest movement priority; dead/riding/spectator/focus guards. Jump and sneak cancel each other. Disabling no longer wipes existing vertical/horizontal velocity, so it cannot erase knockback or create an abrupt stop unrelated to the next controller.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.1,
+        "name": "Speed",
+        "max": 2.0,
+        "step": 0.1
+      },
+      {
+        "min": 0.05,
+        "name": "Vertical",
+        "max": 1.0,
+        "step": 0.05
+      }
+    ]
+  },
+  {
+    "name": "FullBright",
+    "category": "RENDER",
+    "status": "Audited; existing hook retained",
+    "changes": "Existing lightmap-only override retained unchanged; no potion or persistent gamma mutation introduced.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": []
+  },
+  {
+    "name": "HighwayNavigation",
+    "category": "PLAYER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Nearest highway axis plus offset; signed turn toward nearest 45-degree heading. Location-derived axis/offset hidden in privacy mode.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": []
+  },
+  {
+    "name": "InvWalk",
+    "category": "PLAYER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Physical key handling and owned cleanup; inventory/container screen allowlist excludes non-widget text editors. `Jump` and `Sprint` separately control those inputs.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "Jump",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Sprint",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "KillAura",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Checks vanilla cooldown/TPS pacing before taking the action owner; SwordOnly influences weapon selection. AutoSwitch keeps the owned weapon through vanilla attribute updates, restores on target loss/disable and yields restoration to manual selection. Adds deterministic target ties, eye-to-box range checks, nonpositive-damage guards and proper Jump critical postponement.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "Mode",
+        "max": 2.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "SortMode",
+        "max": 2.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Rotation",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Range",
+        "max": 6.0,
+        "step": 0.1
+      },
+      {
+        "min": 1.0,
+        "name": "TurnSpeed",
+        "max": 180.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Criticals",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Invisibles",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Hit Delay",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "TPSSync",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Players",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Monsters",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Neutrals",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Animals",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Tamed",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Projectile",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "SwordOnly",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "PauseIfCrystal",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "PauseIfEating",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "AutoSwitch",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 1.0,
+        "name": "Ticks",
+        "max": 40.0,
+        "step": 1.0
+      },
+      {
+        "min": 1.0,
+        "name": "Iterations",
+        "max": 10.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "Nametags",
+    "category": "RENDER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Friend/invisible filters, spectator exclusion, count cap. Distance plus optional armor/minimum durability/pops. Existing interpolated world labels retained.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": [
+      {
+        "min": 8.0,
+        "name": "Range",
+        "max": 128.0,
+        "step": 8.0
+      },
+      {
+        "min": 0.0,
+        "name": "IgnoreFriends",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "IgnoreInvisible",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 4.0,
+        "name": "MaxEntities",
+        "max": 128.0,
+        "step": 4.0
+      },
+      {
+        "min": 0.0,
+        "name": "Equipment",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "NoBossBar",
+    "category": "RENDER",
+    "status": "Audited; existing hook retained",
+    "changes": "Existing cancellable boss rendering hook audited; no redundant settings added.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": []
+  },
+  {
+    "name": "NoHurtcam",
+    "category": "OTHER",
+    "status": "Audited; existing hook retained",
+    "changes": "Existing cancellable hurt tilt hook audited; no redundant settings added.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": []
+  },
+  {
+    "name": "NoLag",
+    "category": "OTHER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Existing per-tick particle cap retained; `MaxDistance` culls distant particles before they consume the nearby budget.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "ParticlesPerTick",
+        "max": 256.0,
+        "step": 16.0
+      },
+      {
+        "min": 16.0,
+        "name": "MaxDistance",
+        "max": 256.0,
+        "step": 16.0
+      }
+    ]
+  },
+  {
+    "name": "NoPush",
+    "category": "MOVEMENT",
+    "status": "Audited; existing hook retained",
+    "changes": "Existing local-only collision cancellation audited; other entities/global physics untouched, no cosmetic settings added.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": []
+  },
+  {
+    "name": "NoSlowDown",
+    "category": "MOVEMENT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Both active-item movement multipliers retained as mixin targets with exact match count 2. Player/riding/death guards; `WhileSneaking` controls use while crouched. Exact named game bytecode confirmed sideways and forward multipliers, with no other 0.2 constants in tickMovement.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "WhileSneaking",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "NoVelocity",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Existing scaling math retained; independent EntityVelocity/Explosions toggles require NetworkMixin integration by primary worker.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "Horizontal",
+        "max": 1.0,
+        "step": 0.1
+      },
+      {
+        "min": 0.0,
+        "name": "Vertical",
+        "max": 1.0,
+        "step": 0.1
+      },
+      {
+        "min": 0.0,
+        "name": "EntityVelocity",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Explosions",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "NoWeather",
+    "category": "PLAYER",
+    "status": "Audited; existing hook retained",
+    "changes": "Existing client-only rain/thunder render hooks retained unchanged; no server weather mutation.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": []
+  },
+  {
+    "name": "Notifications",
+    "category": "RENDER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Consistent opaque readable background and remaining-life progress bar, retaining existing five-second bounded queue/lifecycle.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": []
+  },
+  {
+    "name": "Overlay",
+    "category": "RENDER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Combat panel includes crystal/obsidian reserves, minimum armor durability and configurable low-armor warning; optional nearby-crystal count and offhand totem state. Target panel adds equipment, armor/minimum durability/range/pops and max-health-aware bar. Stats adds latency. Nearby crystal count is situational information, not a damage or safety prediction.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "Watermark",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "ArrayList",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Coordinates",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Stats",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Combat",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Waypoints",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Shadow",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "TargetHUD",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Armor",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Inventory",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 5.0,
+        "name": "ArmorWarning",
+        "max": 75.0,
+        "step": 5.0
+      },
+      {
+        "min": 0.0,
+        "name": "CrystalThreat",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Red",
+        "max": 255.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Green",
+        "max": 255.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Blue",
+        "max": 255.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "Privacy",
+    "category": "RENDER",
+    "status": "Audited; existing hook retained",
+    "changes": "Existing coordinate/waypoint/stash suppression preserved; new highway axis/offset remains suppressed. Notices are still cleared on activation by existing lifecycle.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": []
+  },
+  {
+    "name": "Safewalk",
+    "category": "MOVEMENT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Ordinary grounded guard; `WhileJumping` defaults false so intentional jumping can leave an edge.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "WhileJumping",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "Search",
+    "category": "PLAYER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Overflow-safe repeating cube cursor, resets on changed block/range/origin/world; immediate cached-hit validation removes broken/unloaded blocks. Configurable line width and through-wall rendering using existing render layers.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": [
+      {
+        "min": 4.0,
+        "name": "Range",
+        "max": 32.0,
+        "step": 4.0
+      },
+      {
+        "min": 128.0,
+        "name": "Budget",
+        "max": 2048.0,
+        "step": 128.0
+      },
+      {
+        "min": 0.0,
+        "name": "ThroughWalls",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.5,
+        "name": "LineWidth",
+        "max": 3.0,
+        "step": 0.5
+      }
+    ]
+  },
+  {
+    "name": "SelfTrap",
+    "category": "COMBAT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Preserves supported roof/cage building but resets invalid pacing, pauses item use, and waits for the actual roof/cage before DisableOnPlace; accepting a scaffold interaction no longer disables the module prematurely.",
+    "details": "UPGRADE-COMBAT.md",
+    "settings": [
+      {
+        "min": 1.0,
+        "name": "Range",
+        "max": 8.0,
+        "step": 0.5
+      },
+      {
+        "min": 1.0,
+        "name": "BlocksPerTick",
+        "max": 8.0,
+        "step": 1.0
+      },
+      {
+        "min": 1.0,
+        "name": "TickDelay",
+        "max": 10.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Mode",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Rotate",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Smart",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "DisableOnPlace",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "DisableCAOnPlace",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "Speed",
+    "category": "MOVEMENT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Shared ownership and ordinary movement guards. Diagonal normalization retained through a tested pure vector policy.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.1,
+        "name": "Speed",
+        "max": 0.8,
+        "step": 0.02
+      }
+    ]
+  },
+  {
+    "name": "Sprint",
+    "category": "MOVEMENT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Requires meaningful forward input, hunger/flight permission, no collision/sneak/liquids, living unmounted player and game focus. `WhileUsingItem` defaults false. Tracks its own sprint request and releases when conditions end.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "WhileUsingItem",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "StashFinder",
+    "category": "PLAYER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Shares bounded incremental storage scan, counts storage only inside its own configured range, dimension/world-scoped notification deduplication capped at 4096 chunks.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": [
+      {
+        "min": 2.0,
+        "name": "Threshold",
+        "max": 64.0,
+        "step": 1.0
+      },
+      {
+        "min": 16.0,
+        "name": "Range",
+        "max": 128.0,
+        "step": 16.0
+      }
+    ]
+  },
+  {
+    "name": "Step",
+    "category": "MOVEMENT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Existing `Height` applies only to the living local player during ordinary grounded non-sneaking movement.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.6,
+        "name": "Height",
+        "max": 2.0,
+        "step": 0.2
+      }
+    ]
+  },
+  {
+    "name": "StorageESP",
+    "category": "RENDER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Incremental loaded-chunk scan (two chunks/tick, at most 512 block entities/chunk); nearest-first refresh; separate container/ender-chest filters; cached positions revalidated before drawing. Unloaded/out-of-range/world-change cache cleanup.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": [
+      {
+        "min": 8.0,
+        "name": "Range",
+        "max": 96.0,
+        "step": 8.0
+      },
+      {
+        "min": 0.0,
+        "name": "ThroughWalls",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.5,
+        "name": "LineWidth",
+        "max": 3.0,
+        "step": 0.25
+      },
+      {
+        "min": 0.0,
+        "name": "Containers",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "EnderChests",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "Strafe",
+    "category": "MOVEMENT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Shared airborne ownership; no liquid/lava/climbing/sneak/item-use interference.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.1,
+        "name": "Speed",
+        "max": 0.8,
+        "step": 0.02
+      }
+    ]
+  },
+  {
+    "name": "TotemPopCounter",
+    "category": "OTHER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Existing connection-scoped counter retained; `Notify` and `Self` toggles require NetworkMixin integration by primary worker.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 0.0,
+        "name": "Notify",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "Self",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  },
+  {
+    "name": "Tracers",
+    "category": "RENDER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Friend/invisible filters, spectator exclusion, nearest-first render count cap. Existing inverse-view no-bob camera origin and through-wall pipeline preserved.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": [
+      {
+        "min": 8.0,
+        "name": "Range",
+        "max": 192.0,
+        "step": 8.0
+      },
+      {
+        "min": 0.0,
+        "name": "ThroughWalls",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.5,
+        "name": "LineWidth",
+        "max": 3.0,
+        "step": 0.25
+      },
+      {
+        "min": 0.0,
+        "name": "IgnoreFriends",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 0.0,
+        "name": "IgnoreInvisible",
+        "max": 1.0,
+        "step": 1.0
+      },
+      {
+        "min": 8.0,
+        "name": "MaxEntities",
+        "max": 256.0,
+        "step": 8.0
+      }
+    ]
+  },
+  {
+    "name": "Waypoints",
+    "category": "RENDER",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "Configurable shared HUD/world range; HUD shows nearest eight matching-dimension markers first. Privacy gating unchanged.",
+    "details": "UPGRADE-VISUALS.md",
+    "settings": [
+      {
+        "min": 64.0,
+        "name": "Range",
+        "max": 4096.0,
+        "step": 64.0
+      }
+    ]
+  },
+  {
+    "name": "Yaw",
+    "category": "MOVEMENT",
+    "status": "Upgraded / shared behavior improved",
+    "changes": "`OnlyMoving` defaults true, avoiding forced idle aiming; aligns head and body yaw and respects focus/player context. Existing Increment retained.",
+    "details": "UPGRADE-MOVEMENT.md",
+    "settings": [
+      {
+        "min": 15.0,
+        "name": "Increment",
+        "max": 90.0,
+        "step": 15.0
+      },
+      {
+        "min": 0.0,
+        "name": "OnlyMoving",
+        "max": 1.0,
+        "step": 1.0
+      }
+    ]
+  }
+]

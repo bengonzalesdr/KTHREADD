@@ -41,3 +41,5 @@ Physical key restoration supports keyboard and mouse bindings. AutoWalk and InvW
 - No new mixin declarations or ModuleManager begin-tick hook are needed.
 - Primary NetworkMixin integration: guard local entity redirect with NoVelocity.EntityVelocity; explosion redirect with NoVelocity.Explosions; check TotemPopCounter.Self before incrementing local player's count; guard notification with Notify without suppressing count updates.
 - Runtime QA remains required for toggling input modules in inventory/creative/anvil/sign/book screens, mouse-bound forward input, focus loss/disconnect, all-enabled movement on ice/ground/air/gliding, and mixin transformation. Static build/tests do not establish server acceptance.
+
+Final integration: primary build/unit suite passed (57 tests), local game suite passed (61 checks), and production compatibility/rendering passed (28 checks). See TESTING.md for exact scope.

@@ -37,3 +37,5 @@ CombatSupport.weapon() remains available and now excludes unusable/near-broken w
 - Armor swaps use normal pickup transactions and never drop inventory items. An unexpected nonempty cursor causes subsequent inventory automation to wait for the user/server rather than guessing recovery clicks.
 - Supports must already exist in local world state; normal reach, collision and server restrictions apply. AutoTrap/SelfTrap can require multiple ticks and cannot complete without a reachable scaffold path.
 - Strength/Weakness weapon ranking covers vanilla sword/mining-tool damage; arbitrary server/custom attribute modifiers are not predicted. The current-hand guard uses the live attack attribute.
+
+Final integration: primary build/unit suite passed (57 tests), local game suite passed (61 checks), and production compatibility/rendering passed (28 checks). See TESTING.md for exact scope.

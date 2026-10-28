@@ -26,10 +26,10 @@
 
 ## Tasks
 
-- [ ] Combat worker: write/run policy regressions; improve offhand threat handling, armor decisions, melee selection/cooldown, block placement/surround/trap, criticals and bow timing. Return file/module audit and test evidence.
-- [ ] Movement worker: write/run movement arbitration regressions; improve each movement/utility module in owned files, including cleanup and environmental conditions. Return file/module audit and integration notes.
-- [ ] Visual/utility worker: improve render filters/stash/search/waypoints, HUD/UI/profile reliability and performance without undoing through-wall fixes. Return file/module audit and integration notes.
-- [ ] Primary: add tested confirmation/backoff and work-budget policies, improve CrystalAura decision pipeline and diagnostics; improve registry lifecycle/keybind/settings/presets.
-- [ ] Integrate worker changes; populate a 54-entry audit with concrete behavior changes/verification.
-- [ ] Build and test verified milestones; commit and push progress. Run targeted game/render/production compatibility checks after integration.
+- [x] Combat worker: write/run policy regressions; improve offhand threat handling, armor decisions, melee selection/cooldown, block placement/surround/trap, criticals and bow timing. Return file/module audit and test evidence.
+- [x] Movement worker: write/run movement arbitration regressions; improve each movement/utility module in owned files, including cleanup and environmental conditions. Return file/module audit and integration notes.
+- [x] Visual/utility worker: improve render filters/stash/search/waypoints, HUD/UI/profile reliability and performance without undoing through-wall fixes. Return file/module audit and integration notes.
+- [x] Primary: add tested confirmation/backoff and work-budget policies, improve CrystalAura decision pipeline and diagnostics; improve registry lifecycle/keybind/settings/presets.
+- [x] Integrate worker changes; populate a 54-entry audit with concrete behavior changes/verification.
+- [x] Build and test verified milestones; commit and push progress. Run targeted game/render/production compatibility checks after integration.
 - [ ] Inspect exact release JAR, source package and publication contents; publish beta release, verify CI and anonymous downloads, preserve rollback and update local documentation.
